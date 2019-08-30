@@ -1,32 +1,61 @@
-// The specific letters that the user typed.
-var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var computerChoices = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+];
 
-// Setting for zero
 var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 var letterUser = [];
 var eachofLetters = null;
 
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+var computerGuess =
+  computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 function countGuessesLeft() {
-    document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+    document.querySelector("#guessesLeft").innerHTML =
+    "Guesses Left: " + guessesLeft;
 }
 
 function farUserGuesses() {
-    document.querySelector("#letter").innerHTML = "Your Guesses so far: " + letterUser.join(' ');
+    document.querySelector("#letter").innerHTML =
+    "Your Guesses so far: " + letterUser.join(" ");
 }
 
 countGuessesLeft();
 
-var restart = function () {
+var restart = function() {
     guessesLeft = 9;
     letterUser = [];
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-}
+    var computerGuess =
+    computerChoices[Math.floor(Math.random() * computerChoices.length)];
+};
 
-document.onkeyup = function (event) {
+document.onkeyup = function(event) {
     guessesLeft--;
 
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -36,13 +65,12 @@ document.onkeyup = function (event) {
     farUserGuesses();
 
     if (userGuess === computerGuess) {
-        wins++;
-        document.querySelector("#wins").innerHTML = "Wins: " + wins;
-        restart();
-    }
-    else if (guessesLeft === 0) {
-        losses++;
-        document.querySelector("#lose").innerHTML = "Loses: " + losses;
-        restart();
+    wins++;
+    document.querySelector("#wins").innerHTML = "Wins: " + wins;
+    restart();
+    } else if (guessesLeft === 0) {
+    losses++;
+    document.querySelector("#lose").innerHTML = "Loses: " + losses;
+    restart();
     }
 };
